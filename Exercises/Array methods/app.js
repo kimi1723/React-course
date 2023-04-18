@@ -8,7 +8,7 @@ function transformToObjects(numberArray) {
 		};
 	});
 
-	console.log(arrayOfObjects);
+	console.log(...arrayOfObjects);
 }
 
 transformToObjects([1, 2, 3]);

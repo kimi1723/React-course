@@ -1,0 +1,30 @@
+{
+    "sourceFile": "Exercises/Array methods/app.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1681855656598,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1681855670807,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n function transformToObjects(numberArray) {\r\n \t// Todo: Add your logic\r\n \t// should return an array of objects\r\n \r\n-\tconst arrayOfObjects = numberArray.map(num => {\r\n+\tconst arrayOfObjects = numberArray.f(num => {\r\n \t\treturn {\r\n \t\t\tval: num,\r\n \t\t};\r\n \t});\r\n"
+                },
+                {
+                    "date": 1681855677899,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,8 @@\n \t\t\tval: num,\r\n \t\t};\r\n \t});\r\n \r\n-\tconsole.log(...arrayOfObjects);\r\n+\tconsole.log(arrayOfObjects);\r\n }\r\n \r\n transformToObjects([1, 2, 3]);\r\n"
+                },
+                {
+                    "date": 1681855686010,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,14 @@\n function transformToObjects(numberArray) {\r\n \t// Todo: Add your logic\r\n \t// should return an array of objects\r\n \r\n-\tconst arrayOfObjects = numberArray.f(num => {\r\n+\tconst arrayOfObjects = numberArray.map(num => {\r\n \t\treturn {\r\n \t\t\tval: num,\r\n \t\t};\r\n \t});\r\n \r\n-\tconsole.log(arrayOfObjects);\r\n+\tconsole.log(...arrayOfObjects);\r\n }\r\n \r\n transformToObjects([1, 2, 3]);\r\n"
+                }
+            ],
+            "date": 1681855656597,
+            "name": "Commit-0",
+            "content": "function transformToObjects(numberArray) {\r\n\t// Todo: Add your logic\r\n\t// should return an array of objects\r\n\r\n\tconst arrayOfObjects = numberArray.map(num => {\r\n\t\treturn {\r\n\t\t\tval: num,\r\n\t\t};\r\n\t});\r\n\r\n\tconsole.log(...arrayOfObjects);\r\n}\r\n\r\ntransformToObjects([1, 2, 3]);\r\n"
+        }
+    ]
+}
