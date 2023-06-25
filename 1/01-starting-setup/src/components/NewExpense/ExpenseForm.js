@@ -2,14 +2,14 @@ import {useState} from 'react';
 import './ExpenseForm.css';
 
 const ExpenseForm = () => {
-	const [enteredTitle, setEnteredTitle] = useState('Title'),
-	[enteredAmount, setEnteredAmount] = useState('$ Amount'),
-	[enteredDate, setEnteredDate] = useState('Date');
+	const [enteredTitle, setEnteredTitle] = useState(''),
+	[enteredAmount, setEnteredAmount] = useState(''),
+	[enteredDate, setEnteredDate] = useState('');
 
 	const titleChangeHandler = (e) => {
 		setEnteredTitle(e.target.value);
 	}, amountChangeHandler = (e) => {
-		setEnteredAmount(`$${e.target.value}`);
+		setEnteredAmount(e.target.value);
 	}, dateChangeHandler = (e) => {
 		setEnteredDate(e.target.value);
 	}, submitHandler = (e) => {
@@ -22,28 +22,25 @@ const ExpenseForm = () => {
 		};
 
 		setEnteredTitle('');
-		setEnteredAmount('$');
-		setEnteredDate('Date');
+		setEnteredAmount('');
+		setEnteredDate('');
+		
 	}
-
-	if(enteredAmount === '$') setEnteredAmount('$ Amount');
-	if(enteredTitle === '') setEnteredTitle('Title');
-	
 
 	return (
 		<form onSubmit={submitHandler}>
 			<div className="new-expense__controls">
 				<div className="new-expense__control">
-					<label>{enteredTitle}</label>
-					<input type="text" placeholder="Enter title" onChange={titleChangeHandler}/>
+					<label>Title</label>
+					<input type="text" placeholder="Enter title" value={enteredTitle} onChange={titleChangeHandler}/>
 				</div>
 				<div className="new-expense__control">
-					<label>{enteredAmount}</label>
-					<input type="number" min="0.01" step="0.01" placeholder="Set amount" onChange={amountChangeHandler} />
+					<label>Amount</label>
+					<input type="number" min="0.01" step="0.01" value={enteredAmount} placeholder="Set amount" onChange={amountChangeHandler} />
 				</div>
 				<div className="new-expense__control">
-					<label>{enteredDate}</label>
-					<input type="date" min="2019-01-01" step="2022-12-31" onChange={(e) => dateChangeHandler(e)} />
+					<label>Date</label>
+					<input type="date" min="2019-01-01" step="2022-12-31" value={enteredDate} onChange={(e) => dateChangeHandler(e)} />
 				</div>
 			</div>
 			<div className="new-expense__actions">
