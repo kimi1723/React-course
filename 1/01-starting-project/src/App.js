@@ -37,12 +37,12 @@ const App = () => {
 
   return (
 
-      <section id="goal-form">
-        <CourseInput onAddGoal={addGoalHandler} />
-      </section>
-      <section id="goals">
-        {content}
-      </section>
+      <div><section id="goal-form">
+      <CourseInput onAddGoal={addGoalHandler} />
+    </section>
+    <section id="goals">
+      {content}
+    </section></div>
 
   );
 };
