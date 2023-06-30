@@ -6,30 +6,46 @@ import InvestmentResultTable from './components/InvestmentResultTable';
 function App() {
   const [yearlyInvestmentData, setYearlyInvestmentData] = useState([]);
    let isDataAvailable;
+   const tab =[];
 
   const calculateInvestmentHandler = (investmentData) => {
-       setYearlyInvestmentData([]);
-
+      
        const {yearlyContribution, expectedReturn, duration} = investmentData;
        let {currentSavings} = investmentData,
+       investedCapital = currentSavings,
        totalInterest = 0;
 
        for (let i = 0; i < duration; i++) {
          const yearlyInterest = currentSavings * (expectedReturn / 100);
+         investedCapital+=yearlyContribution;
          currentSavings += yearlyInterest + yearlyContribution;
-         totalInterest += yearlyContribution + yearlyInterest;
+         totalInterest += yearlyInterest;
+         
+         
 
-              setYearlyInvestmentData(data => [
-                ...data,
-                {
-                  year: i + 1,
-                  yearlyInterest: yearlyInterest,
-                  savingsEndOfYear: currentSavings,
-                  yearlyContribution: yearlyContribution,
-                  totalInterest: totalInterest,
-                }
-            ]);
+        
+
+        tab.push({
+          id:Math.random().toString(),
+          year: i + 1,
+          yearlyInterest: yearlyInterest,
+          savingsEndOfYear: currentSavings,
+          yearlyContribution: yearlyContribution,
+          totalInterest: totalInterest,
+          investedCapital:investedCapital
+        })
+
+            //   setYearlyInvestmentData((data) => [...data,
+            //     {
+            //       year: i + 1,
+            //       yearlyInterest: yearlyInterest,
+            //       savingsEndOfYear: currentSavings,
+            //       yearlyContribution: yearlyContribution,
+            //       totalInterest: totalInterest,
+            //     }
+            // ]);
     }
+    setYearlyInvestmentData([...tab]);
   }
 
   const formResetHandler = () => {

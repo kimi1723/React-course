@@ -3,12 +3,12 @@ import styles from './InvestmentResultsTable.module.css';
 const InvestmentResultTable = (props) => {
 
   const resultRows = props.investmentData.map(investmentYearResult => {
-       return <tr>
+       return <tr key={investmentYearResult.id}>
           <td>{investmentYearResult.year}</td>
           <td>{`$${(investmentYearResult.savingsEndOfYear).toFixed(2)}`}</td>
           <td>{`$${(investmentYearResult.yearlyInterest).toFixed(2)}`}</td>
           <td>{`$${(investmentYearResult.totalInterest).toFixed(2)}`}</td>
-          <td></td>
+          <td>{`$${(investmentYearResult.investedCapital).toFixed(2)}`}</td>
         </tr>
   })
      

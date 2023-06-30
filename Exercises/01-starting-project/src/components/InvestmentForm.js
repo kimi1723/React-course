@@ -23,12 +23,8 @@ const InvestmentForm = (props) => {
         }
 
        props.calculateInvestment(investmentData);
-    }
-
-    const formResetHandler = e => {
-        
-    }
-
+   }
+   
     return <form className={styles.form} onSubmit={formSubmitHandler} onReset={props.resetForm}>
                 <div className={styles["input-group"]}>
                     <p>
