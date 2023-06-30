@@ -8,11 +8,14 @@ function App() {
    let isDataAvailable;
    const tab =[];
 
+
   const calculateInvestmentHandler = (investmentData) => {
       
        const {yearlyContribution, expectedReturn, duration} = investmentData;
        let {currentSavings} = investmentData,
+       
        investedCapital = currentSavings,
+       initialInvestment = currentSavings,
        totalInterest = 0;
 
        for (let i = 0; i < duration; i++) {
@@ -32,7 +35,8 @@ function App() {
           savingsEndOfYear: currentSavings,
           yearlyContribution: yearlyContribution,
           totalInterest: totalInterest,
-          investedCapital:investedCapital
+          investedCapital:investedCapital,
+          initialInvestment: initialInvestment,
         })
 
             //   setYearlyInvestmentData((data) => [...data,
@@ -60,7 +64,7 @@ function App() {
 
       <InvestmentForm calculateInvestment={calculateInvestmentHandler} resetForm={formResetHandler}/>
 
-      {isDataAvailable && <InvestmentResultTable investmentData={yearlyInvestmentData}/>}
+      {isDataAvailable && <InvestmentResultTable investmentData={yearlyInvestmentData} />}
       {!isDataAvailable && <h2>No data found.</h2>}
 
       {/* Todo: Show below table conditionally (only once result data is available) */}

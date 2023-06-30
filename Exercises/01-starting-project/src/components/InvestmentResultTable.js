@@ -8,10 +8,11 @@ const InvestmentResultTable = (props) => {
           <td>{`$${(investmentYearResult.savingsEndOfYear).toFixed(2)}`}</td>
           <td>{`$${(investmentYearResult.yearlyInterest).toFixed(2)}`}</td>
           <td>{`$${(investmentYearResult.totalInterest).toFixed(2)}`}</td>
-          <td>{`$${(investmentYearResult.investedCapital).toFixed(2)}`}</td>
+          <td>{`$${( investmentYearResult.initialInvestment + investmentYearResult.yearlyInterest * investmentYearResult.year).toFixed(2)}`}</td>
         </tr>
   })
-     
+
+   
     return   <table className={styles.result}>
                   <thead>
                       <tr>
