@@ -20,7 +20,7 @@ const ErrorModal = (props) => {
                         <div className={styles.error}>
                             <p>Invalid input</p>
                         </div>
-                        <Card classes='card-modal'>
+                        <Card className={styles.modal}>
                             <p className={styles["error-msg"]}>{errorMsg}</p>
                             <Button onClick={closeModalHandler}>Okay</Button>
                         </Card>

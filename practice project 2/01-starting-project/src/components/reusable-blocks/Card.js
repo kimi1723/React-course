@@ -1,11 +1,10 @@
 import styles from './Card.module.css';
 
-const Card = (props) => {
-    const classes = props.classes;
-    // console.log(styles.classes)
-
-    return <div className={`${styles.card} ${styles.classes}`}>
-        {props.children}
+const Card = ({className,children}) => {
+    
+ 
+    return <div className={`${styles.card} ${className}`}>
+        {children}
     </div>
 }
 
