@@ -1,0 +1,10 @@
+.li {
+    margin-bottom: 1em;
+    padding: 0.3em 0.6em;
+    box-shadow: 0 0 2px #000;
+    list-style: none;
+}
+
+.li:last-of-type {
+    margin-bottom: 0;
+}

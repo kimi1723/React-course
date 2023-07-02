@@ -1,11 +1,9 @@
-import {useState} from 'react';
 import styles from './UserList.module.css';
 import Card from './reusable-blocks/Card';
 
 const UserList = (props) => {
-    console.log(props.users)
     const users = props.users.map(user => { 
-        return <li>
+        return <li key={user.key} className={styles.li}>
                 <p>{user.username} {`(${user.age} years old)`}</p>
             </li>
     })

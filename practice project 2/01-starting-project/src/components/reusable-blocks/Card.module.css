@@ -1,6 +1,10 @@
 .card {
     margin: 1.5em 0;
-    padding: 1.5em;
+    padding: 1em;
     background-color: #ddd;
     border-radius: 15px;
+}
+
+.card-modal {
+    margin: 0 !important;
 }

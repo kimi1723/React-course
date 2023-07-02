@@ -7,29 +7,52 @@ const AddUser = (props) => {
     const [users, setUsers] = useState([]);
     const [usernameInputValue, setUsernameInputValue] = useState('');
     const [ageInputValue, setAgeInputValue] = useState('');
-   
+    let tab = [], isEmpty, errorCode, isProperAge;
 
     const usernameChangeHandler = e => {
         setUsernameInputValue(e.target.value);
     }
 
     const ageChangeHandler = e => {
-        setAgeInputValue(+e.target.value);
+        setAgeInputValue(e.target.value);
     }
+
+    if(ageInputValue.trim().length === 0 || usernameInputValue.trim().length === 0) isEmpty = true;
+    if(ageInputValue > 0) isProperAge = true;
 
     const submitHandler = (e) => {
         e.preventDefault();
 
-        setUsers(prevUsers => {
-            return [...prevUsers,
-                {
-                    username: usernameInputValue,
-                    age: ageInputValue,
-                }
-            ] 
-        });
+        if(isEmpty) {
+            errorCode = 0;
+            return props.handleError(errorCode);
+        } else if(!isProperAge) {
+            errorCode = 1;
+            return props.handleError(errorCode);
+        } else {
+            errorCode = 200;
+            props.handleError(errorCode)
+        }
 
-        props.sendData(users);
+        tab.push(...users, {
+            key: Math.random().toString(),
+            username:usernameInputValue,
+                    age:ageInputValue
+        })
+
+    //     setUsers(prevUsers => 
+    //          [...prevUsers,
+    //             {
+    //                 username: usernameInputValue,
+    //                 age: ageInputValue,
+    //             }
+    //         ] 
+    //    );
+
+          setUsers([...tab]);
+
+
+        props.sendData(tab);
         setUsernameInputValue('');
         setAgeInputValue('');
     }
