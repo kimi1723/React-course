@@ -1,0 +1,15 @@
+.button {
+    align-self: flex-start;
+    padding: 0.5em 0.8em;
+    font-size: 1rem;
+    color: white;
+    background-color: rgb(80, 3, 80);
+    border: none;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.button:hover, .button:focus {
+    background-color: rgb(138, 12, 138);
+    outline: none;
+}
