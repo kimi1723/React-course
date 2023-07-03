@@ -49,7 +49,7 @@ const AddUser = (props) => {
     //         ] 
     //    );
 
-          setUsers([...tab]);
+          setUsers(tab);
 
 
         props.sendData(tab);

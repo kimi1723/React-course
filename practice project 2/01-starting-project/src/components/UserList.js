@@ -9,10 +9,10 @@ const UserList = (props) => {
     })
     
     return <Card>
-        <ul>
-            {users}
-        </ul>
-    </Card>
+                <ul>
+                    {users}
+                </ul>
+           </Card>
 }
 
 export default UserList;
