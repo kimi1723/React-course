@@ -49,7 +49,7 @@ const Login = (props) => {
   const {isValid: passwordIsValid} = passwordState;
 
   useEffect(() => {
-    const identifier = setTimeout(() => {
+        const identifier = setTimeout(() => {
       console.log('Checking form validity!');
       setFormIsValid(
         emailIsValid && passwordIsValid
