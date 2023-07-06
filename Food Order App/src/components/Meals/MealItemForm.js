@@ -4,18 +4,19 @@ import Input from "../UI/Input/Input";
 import OrderContext from "../../store/order-context";
 
 const MealItemForm = ({ id }) => {
-	// const [mealOrder, setMealOrder] = useState([]);
+	const [orderState, setOrderState] = useState({});
 	const mealOrderCtx = useContext(OrderContext);
 
 	const amountHandler = (amount) => {
-		// setMealOrder((previousMeals) => {
-		// 	return [...previousMeals, { id: id, amount: amount }];
-		// });
-		mealOrderCtx.setAmount(amount);
+		setOrderState({
+			id: id,
+			amount: amount,
+		});
 	};
 
 	const addToCartHandler = (e) => {
 		e.preventDefault();
+		mealOrderCtx.addToCart(orderState);
 	};
 
 	return (
