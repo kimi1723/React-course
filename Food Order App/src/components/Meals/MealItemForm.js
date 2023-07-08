@@ -3,14 +3,22 @@ import classes from "./MealItemForm.module.css";
 import Input from "../UI/Input/Input";
 import OrderContext from "../../store/order-context";
 
-const MealItemForm = ({ id }) => {
-	const [orderState, setOrderState] = useState({});
+const MealItemForm = ({ id, price, name }) => {
+	const [orderState, setOrderState] = useState({
+		id: id,
+		amount: 1,
+		price: price,
+		name: name,
+	});
+
 	const mealOrderCtx = useContext(OrderContext);
 
 	const amountHandler = (amount) => {
 		setOrderState({
 			id: id,
 			amount: amount,
+			price: price,
+			name: name,
 		});
 	};
 

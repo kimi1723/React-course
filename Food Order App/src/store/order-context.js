@@ -1,22 +1,21 @@
 import { createContext, useState } from "react";
 
 const OrderContext = createContext({
-	mealID: "",
-	amount: 0,
+	addToCart: () => {},
+	items: 0,
+	cart: [],
 });
 
 export const OrderContextProvider = ({ children }) => {
 	const [cart, setCart] = useState([]);
-	const addToCart = (order) => {
-		setCart((prevCart) => {
-			return [...prevCart, order];
-		});
 
-		console.log(cart);
+	const addToCart = (order) => {
+		setCart((prev) => [...prev, order]);
 	};
 
 	return (
-		<OrderContext.Provider value={{ addToCart: addToCart, items: cart.length }}>
+		<OrderContext.Provider
+			value={{ addToCart: addToCart, items: cart.length, cart: cart }}>
 			{children}
 		</OrderContext.Provider>
 	);

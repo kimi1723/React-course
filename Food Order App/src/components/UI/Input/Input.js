@@ -16,6 +16,9 @@ const Input = ({ id, type, label, onChange }) => {
 				type={type}
 				onChange={amountHandler}
 				ref={amountInputRef}
+				defaultValue={1}
+				min="1"
+				max="5"
 			/>
 		</div>
 	);
