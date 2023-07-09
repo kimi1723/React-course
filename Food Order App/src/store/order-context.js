@@ -16,11 +16,17 @@ export const OrderContextProvider = ({ children }) => {
 	};
 
 	const removeSingleItemFromCart = (e, name) => {
-		const updatedCart = cart.filter((item) => item.name != name);
-		const foundItem = cart
-			.filter((item) => item.name === name)
-			.map((item) => +item.amount - 1);
-		// const updatedItem =
+		setCart((prevCart) => {
+			const itemIndex = prevCart.findIndex((item) => item.name === name);
+			if (prevCart[itemIndex].amount > 0) {
+				prevCart[itemIndex].amount -= 1;
+			} else {
+				console.log(`You can't order negative amounts of food!`);
+				return prevCart;
+			}
+			return prevCart;
+		});
+		return cart;
 	};
 
 	return (

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useState, seEffect, useContext } from "react";
 import classes from "./Cart.module.css";
 import Modal from "../UI/Modal/Modal";
 import CartItem from "./CartItem";
@@ -6,17 +6,20 @@ import OrderContext from "../../store/order-context";
 
 const Cart = ({ onClick }) => {
 	const cartCtx = useContext(OrderContext);
+	const [cart, setCart] = useState(cartCtx.cart);
 	let total = 0;
-
-	const removeHandler = (e, name) => {
-		cartCtx.removeSingleItemFromCart(e, name);
-	};
 
 	const addHandler = () => {
 		console.log("asdas");
 	};
 
-	const cartItems = cartCtx.cart.map((item) => (
+	const removeHandler = (e, name) => {
+		const newCart = cartCtx.removeSingleItemFromCart(e, name);
+		console.log(newCart);
+		setCart(newCart);
+	};
+
+	const cartItems = cart.map((item) => (
 		<CartItem
 			key={item.id}
 			price={item.price}
