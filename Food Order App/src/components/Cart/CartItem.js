@@ -1,6 +1,14 @@
 import classes from "./CartItem.module.css";
 
 const CartItem = ({ price, name, amount, onRemove, onAdd }) => {
+	const removeHandler = (e, id) => {
+		onRemove(e, id);
+	};
+
+	const addHandler = () => {
+		onAdd();
+	};
+
 	return (
 		<li className={classes["cart-item"]}>
 			<div>
@@ -11,8 +19,16 @@ const CartItem = ({ price, name, amount, onRemove, onAdd }) => {
 				</div>
 			</div>
 			<div className={classes.actions}>
-				<button onClick={onRemove}>−</button>
-				<button onClick={onAdd}>+</button>
+				<button
+					type="button"
+					onClick={(e) => {
+						removeHandler(e, name);
+					}}>
+					−
+				</button>
+				<button type="button" onClick={addHandler}>
+					+
+				</button>
 			</div>
 		</li>
 	);

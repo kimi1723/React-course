@@ -5,8 +5,16 @@ import CartItem from "./CartItem";
 import OrderContext from "../../store/order-context";
 
 const Cart = ({ onClick }) => {
-	let total = 0;
 	const cartCtx = useContext(OrderContext);
+	let total = 0;
+
+	const removeHandler = (e, name) => {
+		cartCtx.removeSingleItemFromCart(e, name);
+	};
+
+	const addHandler = () => {
+		console.log("asdas");
+	};
 
 	const cartItems = cartCtx.cart.map((item) => (
 		<CartItem
@@ -14,6 +22,8 @@ const Cart = ({ onClick }) => {
 			price={item.price}
 			name={item.name}
 			amount={item.amount}
+			onRemove={removeHandler}
+			onAdd={addHandler}
 		/>
 	));
 
@@ -26,7 +36,8 @@ const Cart = ({ onClick }) => {
 	};
 	const orderSubmitHandler = (e) => {
 		e.preventDefault();
-		console.log("Ordered!");
+		console.log(...cartCtx.cart);
+		console.log("Total price: " + total);
 		closeCartHandler(false);
 	};
 
