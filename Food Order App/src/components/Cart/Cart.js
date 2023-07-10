@@ -8,10 +8,8 @@ const Cart = ({ onClick }) => {
 	const cartCtx = useContext(OrderContext);
 	const cart = cartCtx.cart;
 
-	let total = 0;
-
-	const addHandler = () => {
-		console.log("asdas");
+	const addHandler = (e, name) => {
+		cartCtx.addSingleItemToCart(e, name);
 	};
 
 	const removeHandler = (e, name) => {
@@ -29,17 +27,17 @@ const Cart = ({ onClick }) => {
 		/>
 	));
 
-	cart.forEach((item) => {
-		total += item.price * item.amount;
-	});
-
 	const orderSubmitHandler = (e) => {
 		e.preventDefault();
 		console.log(cart);
-		console.log("Total price: " + total);
+		console.log("Total price: " + cartCtx.total);
 		onClick(false);
 		cartCtx.resetCart();
 	};
+
+	let orderState = false;
+
+	cartCtx.items > 0 ? (orderState = true) : (orderState = false);
 
 	return (
 		<>
@@ -48,7 +46,7 @@ const Cart = ({ onClick }) => {
 					<ul className={classes["cart-items"]}>{cartItems}</ul>
 					<div className={classes.total}>
 						<p>Total amount</p>
-						<p>{`$${total.toFixed(2)}`}</p>
+						<p>{`$${cartCtx.total.toFixed(2)}`}</p>
 					</div>
 					<div className={classes.actions}>
 						<button
@@ -57,9 +55,11 @@ const Cart = ({ onClick }) => {
 							onClick={() => onClick(false)}>
 							Close
 						</button>
-						<button type="submit" className={classes.button}>
-							Order
-						</button>
+						{orderState && (
+							<button type="submit" className={classes.button}>
+								Order
+							</button>
+						)}
 					</div>
 				</form>
 			</Modal>

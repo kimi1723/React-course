@@ -7,10 +7,16 @@ const OrderContext = createContext({
 	removeSingleItemFromCart: () => {},
 	items: 0,
 	cart: [],
+	total: 0,
 });
 
 export const OrderContextProvider = ({ children }) => {
 	const [cart, setCart] = useState([]);
+	let total = 0;
+
+	cart.forEach((item) => {
+		total += item.price * item.amount;
+	});
 
 	const addToCart = (order) => {
 		setCart((prev) => [...prev, order]);
@@ -20,13 +26,31 @@ export const OrderContextProvider = ({ children }) => {
 		setCart([]);
 	};
 
-	const removeSingleItemFromCart = (e, name) => {
+	const addSingleItemToCart = (e, name) => {
 		const updatedCart = cart;
 		const itemIndex = updatedCart.findIndex((item) => item.name === name);
-		if (updatedCart[itemIndex].amount > 0) {
+
+		if (updatedCart[itemIndex].amount < 5) {
+			updatedCart[itemIndex].amount += 1;
+		} else {
+			console.log(
+				`You can't order more than 5 amounts per meal in one procurement!`,
+			);
+		}
+
+		setCart(() => [...updatedCart]);
+
+		return updatedCart;
+	};
+
+	const removeSingleItemFromCart = (e, name) => {
+		let updatedCart = cart;
+		const itemIndex = updatedCart.findIndex((item) => item.name === name);
+
+		if (updatedCart[itemIndex].amount > 1) {
 			updatedCart[itemIndex].amount -= 1;
 		} else {
-			console.log(`You can't order negative amounts of food!`);
+			updatedCart = updatedCart.filter((item) => item.name !== name);
 		}
 
 		setCart(() => [...updatedCart]);
@@ -39,9 +63,11 @@ export const OrderContextProvider = ({ children }) => {
 			value={{
 				addToCart: addToCart,
 				resetCart: resetCart,
+				addSingleItemToCart: addSingleItemToCart,
 				removeSingleItemFromCart: removeSingleItemFromCart,
 				items: cart.length,
 				cart: cart,
+				total: total,
 			}}>
 			{children}
 		</OrderContext.Provider>

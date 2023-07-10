@@ -1,14 +1,12 @@
-import { useState } from "react";
 import classes from "./CartItem.module.css";
 
 const CartItem = ({ price, name, amount, onRemove, onAdd }) => {
-	// const []
 	const removeHandler = (e, id) => {
 		onRemove(e, id);
 	};
 
-	const addHandler = () => {
-		onAdd();
+	const addHandler = (e, id) => {
+		onAdd(e, id);
 	};
 
 	return (
@@ -28,7 +26,7 @@ const CartItem = ({ price, name, amount, onRemove, onAdd }) => {
 					}}>
 					−
 				</button>
-				<button type="button" onClick={addHandler}>
+				<button type="button" onClick={(e) => addHandler(e, name)}>
 					+
 				</button>
 			</div>
