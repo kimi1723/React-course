@@ -5,12 +5,9 @@ import OrderContext from "../../../store/order-context";
 
 const HeaderCartButton = ({ onClick }) => {
 	const mealOrderCtx = useContext(OrderContext);
-	const openCartHandler = () => {
-		onClick(openCartHandler);
-	};
 
 	return (
-		<button className={classes.button} onClick={openCartHandler}>
+		<button className={classes.button} onClick={onClick}>
 			<span className={classes.icon}>
 				<CartIcon />
 			</span>

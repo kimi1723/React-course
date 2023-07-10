@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import classes from "./Cart.module.css";
 import Modal from "../UI/Modal/Modal";
 import CartItem from "./CartItem";
@@ -6,7 +6,8 @@ import OrderContext from "../../store/order-context";
 
 const Cart = ({ onClick }) => {
 	const cartCtx = useContext(OrderContext);
-	const [cart, setCart] = useState(cartCtx.cart);
+	const cart = cartCtx.cart;
+
 	let total = 0;
 
 	const addHandler = () => {
@@ -14,7 +15,7 @@ const Cart = ({ onClick }) => {
 	};
 
 	const removeHandler = (e, name) => {
-		setCart(cartCtx.removeSingleItemFromCart(e, name));
+		cartCtx.removeSingleItemFromCart(e, name);
 	};
 
 	const cartItems = cart.map((item) => (
@@ -32,20 +33,17 @@ const Cart = ({ onClick }) => {
 		total += item.price * item.amount;
 	});
 
-	const closeCartHandler = () => {
-		onClick(false);
-	};
 	const orderSubmitHandler = (e) => {
 		e.preventDefault();
 		console.log(cart);
 		console.log("Total price: " + total);
-		closeCartHandler(false);
+		onClick(false);
 		cartCtx.resetCart();
 	};
 
 	return (
 		<>
-			<Modal onClick={closeCartHandler}>
+			<Modal onClick={() => onClick(false)}>
 				<form onSubmit={orderSubmitHandler}>
 					<ul className={classes["cart-items"]}>{cartItems}</ul>
 					<div className={classes.total}>
@@ -56,7 +54,7 @@ const Cart = ({ onClick }) => {
 						<button
 							type="button"
 							className={classes["button--alt"]}
-							onClick={closeCartHandler}>
+							onClick={() => onClick(false)}>
 							Close
 						</button>
 						<button type="submit" className={classes.button}>

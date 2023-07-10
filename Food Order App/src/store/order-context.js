@@ -21,18 +21,17 @@ export const OrderContextProvider = ({ children }) => {
 	};
 
 	const removeSingleItemFromCart = (e, name) => {
-		setCart((prevCart) => {
-			const itemIndex = prevCart.findIndex((item) => item.name === name);
-			if (prevCart[itemIndex].amount > 0) {
-				prevCart[itemIndex].amount -= 1;
-			} else {
-				console.log(`You can't order negative amounts of food!`);
-				return prevCart;
-			}
-			return prevCart;
-		});
+		const updatedCart = cart;
+		const itemIndex = updatedCart.findIndex((item) => item.name === name);
+		if (updatedCart[itemIndex].amount > 0) {
+			updatedCart[itemIndex].amount -= 1;
+		} else {
+			console.log(`You can't order negative amounts of food!`);
+		}
 
-		return cart;
+		setCart(() => [...updatedCart]);
+
+		return updatedCart;
 	};
 
 	return (

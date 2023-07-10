@@ -16,7 +16,7 @@ function App() {
 	return (
 		<>
 			{cartVisibility && <Cart onClick={closeCartHandler} />}
-			<Header onClick={openCartHandler} />
+			<Header onOpenCart={openCartHandler} />
 			<main>
 				<Meals />
 			</main>
