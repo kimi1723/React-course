@@ -25,6 +25,12 @@ const MealItemForm = ({ id, price, name }) => {
 	const addToCartHandler = (e) => {
 		e.preventDefault();
 		mealOrderCtx.addToCart(orderState);
+		setOrderState({
+			id: id,
+			amount: 1,
+			price: price,
+			name: name,
+		});
 	};
 
 	return (

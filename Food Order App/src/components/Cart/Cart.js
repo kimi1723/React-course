@@ -8,22 +8,12 @@ const Cart = ({ onClick }) => {
 	const cartCtx = useContext(OrderContext);
 	const cart = cartCtx.cart;
 
-	const addHandler = (e, name) => {
-		cartCtx.addSingleItemToCart(e, name);
-	};
-
-	const removeHandler = (e, name) => {
-		cartCtx.removeSingleItemFromCart(e, name);
-	};
-
 	const cartItems = cart.map((item) => (
 		<CartItem
 			key={item.id}
 			price={item.price}
 			name={item.name}
 			amount={item.amount}
-			onRemove={removeHandler}
-			onAdd={addHandler}
 		/>
 	));
 

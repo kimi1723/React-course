@@ -1,13 +1,9 @@
+import { useContext } from "react";
 import classes from "./CartItem.module.css";
+import OrderContext from "../../store/order-context";
 
-const CartItem = ({ price, name, amount, onRemove, onAdd }) => {
-	const removeHandler = (e, id) => {
-		onRemove(e, id);
-	};
-
-	const addHandler = (e, id) => {
-		onAdd(e, id);
-	};
+const CartItem = ({ price, name, amount }) => {
+	const cartCtx = useContext(OrderContext);
 
 	return (
 		<li className={classes["cart-item"]}>
@@ -21,12 +17,10 @@ const CartItem = ({ price, name, amount, onRemove, onAdd }) => {
 			<div className={classes.actions}>
 				<button
 					type="button"
-					onClick={(e) => {
-						removeHandler(e, name);
-					}}>
+					onClick={() => cartCtx.removeSingleItemFromCart(name)}>
 					−
 				</button>
-				<button type="button" onClick={(e) => addHandler(e, name)}>
+				<button type="button" onClick={() => cartCtx.addSingleItemToCart(name)}>
 					+
 				</button>
 			</div>

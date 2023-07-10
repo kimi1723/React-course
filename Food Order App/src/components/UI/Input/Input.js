@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import classes from "./Input.module.css";
 
-const Input = ({ id, type, label, onChange, input }) => {
+const Input = ({ id, type, label, onChange }) => {
 	const amountInputRef = useRef();
 
 	const amountHandler = () => {
