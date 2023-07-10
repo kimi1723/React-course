@@ -1,4 +1,4 @@
-import { useState, seEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import classes from "./Cart.module.css";
 import Modal from "../UI/Modal/Modal";
 import CartItem from "./CartItem";
@@ -14,9 +14,7 @@ const Cart = ({ onClick }) => {
 	};
 
 	const removeHandler = (e, name) => {
-		const newCart = cartCtx.removeSingleItemFromCart(e, name);
-		console.log(newCart);
-		setCart(newCart);
+		setCart(cartCtx.removeSingleItemFromCart(e, name));
 	};
 
 	const cartItems = cart.map((item) => (
@@ -30,7 +28,7 @@ const Cart = ({ onClick }) => {
 		/>
 	));
 
-	cartCtx.cart.forEach((item) => {
+	cart.forEach((item) => {
 		total += item.price * item.amount;
 	});
 
@@ -39,16 +37,17 @@ const Cart = ({ onClick }) => {
 	};
 	const orderSubmitHandler = (e) => {
 		e.preventDefault();
-		console.log(...cartCtx.cart);
+		console.log(cart);
 		console.log("Total price: " + total);
 		closeCartHandler(false);
+		cartCtx.resetCart();
 	};
 
 	return (
 		<>
 			<Modal onClick={closeCartHandler}>
 				<form onSubmit={orderSubmitHandler}>
-					<ul className={classes["cart-items"]}>{cartItems}</ul>{" "}
+					<ul className={classes["cart-items"]}>{cartItems}</ul>
 					<div className={classes.total}>
 						<p>Total amount</p>
 						<p>{`$${total.toFixed(2)}`}</p>

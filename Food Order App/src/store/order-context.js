@@ -3,6 +3,7 @@ import { createContext, useState } from "react";
 const OrderContext = createContext({
 	addToCart: () => {},
 	addSingleItemToCart: () => {},
+	resetCart: () => {},
 	removeSingleItemFromCart: () => {},
 	items: 0,
 	cart: [],
@@ -13,6 +14,10 @@ export const OrderContextProvider = ({ children }) => {
 
 	const addToCart = (order) => {
 		setCart((prev) => [...prev, order]);
+	};
+
+	const resetCart = () => {
+		setCart([]);
 	};
 
 	const removeSingleItemFromCart = (e, name) => {
@@ -26,6 +31,7 @@ export const OrderContextProvider = ({ children }) => {
 			}
 			return prevCart;
 		});
+
 		return cart;
 	};
 
@@ -33,6 +39,7 @@ export const OrderContextProvider = ({ children }) => {
 		<OrderContext.Provider
 			value={{
 				addToCart: addToCart,
+				resetCart: resetCart,
 				removeSingleItemFromCart: removeSingleItemFromCart,
 				items: cart.length,
 				cart: cart,
