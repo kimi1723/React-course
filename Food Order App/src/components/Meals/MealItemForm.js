@@ -40,6 +40,7 @@ const MealItemForm = ({ id, price, name }) => {
 				id={Math.random()}
 				type="number"
 				onChange={amountHandler}
+				value={orderState.amount}
 			/>
 			<button type="submit">+ Add</button>
 		</form>
